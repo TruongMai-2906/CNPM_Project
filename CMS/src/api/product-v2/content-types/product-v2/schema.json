@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_v2s",
+  "info": {
+    "singularName": "product-v2",
+    "pluralName": "product-v2s",
+    "displayName": "ProductV2",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "banner": {
+      "displayName": "banner",
+      "type": "component",
+      "repeatable": false,
+      "component": "banner.banner"
+    },
+    "introduce": {
+      "type": "component",
+      "repeatable": false,
+      "component": "introduce.introduce"
+    },
+    "store": {
+      "displayName": "store",
+      "type": "component",
+      "repeatable": false,
+      "component": "store.store"
+    },
+    "news": {
+      "displayName": "news",
+      "type": "component",
+      "repeatable": false,
+      "component": "news.news"
+    },
+    "signup": {
+      "displayName": "signup",
+      "type": "component",
+      "repeatable": false,
+      "component": "signup.signup"
+    },
+    "settings": {
+      "type": "json"
+    }
+  }
+}
