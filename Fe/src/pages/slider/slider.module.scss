@@ -71,7 +71,7 @@
   height: 100%;
 }
 
-.swiper-slide {
+.wiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -134,7 +134,9 @@
   transition: 0.5s;
   width: 326px;
   height: 428px;
+
   // opacity: 1;
+  overflow: hidden;
 }
 .wiper-slide_wrapper--pink {
   position: absolute;
@@ -187,12 +189,10 @@
 }
 .wiper-slide_wrapper:hover .wiper-slide_wrapper-footer__btn {
   border: 2px solid white;
- 
 }
 .wiper-slide_wrapper-footer__btn:hover {
   color: black;
   background-color: #ebf6ff;
-   
 }
 
 .wiper-slide_wrapper__title {
@@ -206,4 +206,9 @@
 }
 .wiper-slide_wrapper:hover .wiper-slide_wrapper__title {
   opacity: 0;
+}
+@media screen and (max-width: 1290px) {
+  .wiper-slide {
+    min-width: 30%;
+  }
 }

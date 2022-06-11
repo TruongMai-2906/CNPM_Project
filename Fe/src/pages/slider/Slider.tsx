@@ -22,11 +22,14 @@ import SwiperCore, {
   Mousewheel,
   Keyboard,
 } from "swiper";
-export interface imgList {
-  img: String;
+export interface sliceNewProduct {
+  id: number;
+  img?: String;
+  title?: String;
+  content?: String;
 }
 // SwiperCore.use([Navigation, Autoplay, Pagination]);
-export default function Slider() {
+const Slice: React.FC = () => {
   const list = [
     {
       img: "https://www.w3schools.com/w3css/img_lights.jpg",
@@ -177,7 +180,7 @@ export default function Slider() {
             delay: 2000,
             disableOnInteraction: true,
           }}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
+          modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
           className={styles.swiper}
           onInit={(swiper) => {
             setCurrentEvent(swiper.activeIndex);
@@ -227,4 +230,5 @@ export default function Slider() {
       </div>
     </>
   );
-}
+};
+export default Slice;
