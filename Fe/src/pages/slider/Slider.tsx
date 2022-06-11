@@ -165,12 +165,14 @@ export default function Slider() {
         </div>
         <Swiper
           cssMode={true}
-          navigation={true}
+          // navigation={true}
           spaceBetween={30}
           slidesPerView={4}
           pagination={true}
           mousewheel={true}
           keyboard={true}
+          watchOverflow={true}
+          // centeredSlides={true}
           autoplay={{
             delay: 2000,
             disableOnInteraction: true,

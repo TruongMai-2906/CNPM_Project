@@ -150,7 +150,10 @@
   width: 326px;
   height: 0;
   z-index: 1;
-
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
   color: white;
 }
 .wiper-slide_wrapper:hover .wiper-slide_wrapper-header {
@@ -178,13 +181,20 @@
   height: 100%;
   background-color: Transparent;
   background-repeat: no-repeat;
-  border: 2px solid white;
+
+  border: none;
   border-radius: 10px;
+}
+.wiper-slide_wrapper:hover .wiper-slide_wrapper-footer__btn {
+  border: 2px solid white;
+ 
 }
 .wiper-slide_wrapper-footer__btn:hover {
   color: black;
   background-color: #ebf6ff;
+   
 }
+
 .wiper-slide_wrapper__title {
   font-size: 30px;
   position: absolute;
