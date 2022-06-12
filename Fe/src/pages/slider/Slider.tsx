@@ -22,6 +22,7 @@ import SwiperCore, {
   Mousewheel,
   Keyboard,
 } from "swiper";
+import { useCheckMobileScreen } from "./customHook.ts";
 export interface sliceNewProduct {
   id: number;
   img?: String;
@@ -30,6 +31,7 @@ export interface sliceNewProduct {
 }
 // SwiperCore.use([Navigation, Autoplay, Pagination]);
 const Slice: React.FC = () => {
+  const useCustom = useCheckMobileScreen(768);
   const list = [
     {
       img: "https://www.w3schools.com/w3css/img_lights.jpg",
@@ -170,16 +172,16 @@ const Slice: React.FC = () => {
           cssMode={true}
           // navigation={true}
           spaceBetween={30}
-          slidesPerView={4}
+          slidesPerView={useCustom ? 2 : 4}
           pagination={true}
           mousewheel={true}
           keyboard={true}
           watchOverflow={true}
           // centeredSlides={true}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,
-          }}
+          // autoplay={{
+          //   delay: 2000,
+          //   disableOnInteraction: true,
+          // }}
           modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
           className={styles.swiper}
           onInit={(swiper) => {
@@ -201,7 +203,11 @@ const Slice: React.FC = () => {
                     <div className={styles["wiper-slide_wrapper-header"]}>
                       {listTitle[i].img}
                       <div>-----------------</div>
-                      <div>{contents[i].name}</div>
+                      <div
+                        className={styles["wiper-slide_wrapper-header__name"]}
+                      >
+                        {contents[i].name}
+                      </div>
                     </div>
 
                     <div>
