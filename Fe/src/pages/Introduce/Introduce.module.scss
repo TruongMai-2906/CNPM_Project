@@ -1,0 +1,86 @@
+@import 'src/assets/styles/global.scss';
+@import "src/assets/styles/mixin";
+@import "src/assets/styles/variable";
+
+#introduce-movies {
+    line-height: 1.5em;
+    background: white;
+    position: relative;
+    width: 100%;
+    // height: 100%;
+    @include at($desktop) {
+        margin-top: 0;
+        padding: 0 22px 0 25px;
+    }
+
+    .heading {
+        text-align: left;
+        margin-bottom: 15px;
+       
+        color: black;
+        
+        .h2{
+            font-weight: bold;
+        }
+    }
+
+    .mySwiper {
+       
+        display: grid;
+        gap: 6px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        overflow-x: auto;
+        overflow: hidden;
+        scroll-behavior: smooth;
+
+        .items {
+            transform: scale(1);
+            max-width: 650px;
+            width: 40%;
+            height: 100%;
+            transition: all 0.3s linear;
+            user-select: none;
+            overflow: hidden;
+            transform: center left;
+            position: relative;
+            padding-bottom: 1.5rem;
+            .button{
+                position: absolute;
+                top: 25px;
+                right: 50px;
+            }
+            .box {
+                width: 100%;
+                transform: scale(1);
+                max-width: 500px;
+                max-height: 400px;
+                // height: 100%;
+                transition: all 0.5s linear;
+                user-select: none;
+                overflow: hidden;
+                transform: center left;
+                position: relative;
+                @include at($desktop) {
+                    max-width: 650px;
+                    width: 100%;
+                }
+
+                .img-game {
+                    display: block;
+                    width: 100%;
+                    -webkit-transform-style: preserve-3d;
+                    height: 350px;
+                    cursor: pointer;
+                    scroll-behavior: smooth;
+                    transition: all .3s ease-in-out;
+                  
+                }
+
+                
+            }
+        }
+    }
+}

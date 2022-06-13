@@ -11,6 +11,7 @@ import Detail from "./pages/Detail/Detail.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WatchFilm from "./pages/WatchFilm/WatchFilm.tsx";
 import Slider from "./pages/slider/Slider.tsx";
+import Introduce from "./pages/Introduce/Introduce.tsx";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
         <Route path="/detail" element={<Detail/>}></Route>
         <Route path="/watch" element={<WatchFilm/>}/> */}
           <Route path="/slice" element={<Slider />} />
+          <Route path="/introduce" element={<Introduce />} />
         </Routes>
         {/* <Footer></Footer> */}
       </Router>
