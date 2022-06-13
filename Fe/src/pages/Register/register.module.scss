@@ -1,0 +1,98 @@
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/mixin";
+@import "src/assets/styles/variable";
+.register{
+    display: flex;
+    height: 100vh;
+    // overflow: hidden;
+    @media screen and (max-width: 768px) {
+     
+      border: 3px solid cyan;
+      border-radius: 5px;
+       
+
+
+}
+    
+
+    .left_register{
+            width: 50%;
+            background-image: url('../../assets/images/home/banner2.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;     
+            @media screen and (max-width: 768px) {
+     
+                    display: none;
+                   
+
+
+            }
+           
+    }
+    .right_register{
+        width: 50%;
+        padding: 30px 30vh 30px 30px;
+        height: 100%;
+        border: 3px solid cyan;
+      border-radius: 5px;
+        @media screen and (max-width: 768px) {
+     
+            padding: 1rem 1rem 1rem 1rem;
+            width: 100%;
+           
+    
+    
+    }
+        .form_title{
+            font-size: 1rem;
+            .form_description{
+                padding: 0 4rem 0 0;
+            }
+       
+        }
+        input{
+            margin: 1rem 0;
+            border-radius: 10px;
+            width: 80%;
+            font-size: 1rem;
+            padding: 0.2rem;
+            outline: none;
+        }
+        .container_national-date{
+            display: flex;
+            width: 80%;
+            
+   
+            .national{
+                flex: 1;
+                outline: none;
+                border-radius: 10px;
+                margin: 0.8rem;
+              
+            }
+            .input-date{
+               flex: 2;
+            }
+           
+
+        }
+        .accept_me{
+            input{
+                width: auto;
+                margin: 0 12px;
+            }
+            display: flex;
+            margin: 1rem 0;
+            width: 80%;
+        }
+        button{
+            padding: 12px;
+            background-color: aqua;
+            border: none;
+            border-radius: 6px;
+         
+        }
+        
+    }
+ 
+}
