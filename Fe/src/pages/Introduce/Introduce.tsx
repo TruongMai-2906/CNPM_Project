@@ -14,7 +14,9 @@ import { useCheckMobileScreen } from './customeHooks.ts';
 import "antd/dist/antd.css";
 import { Button, Image } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { post } from "../../utilities/api";
 
+import query from "./query";
 
 export interface IntroduceDataType{
   title: string;
@@ -58,6 +60,17 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
 
   }
   const mobile = useCheckMobileScreen(768);
+
+  const [a, setA] = useState();
+
+  useEffect(() => {
+    const initData = async () => {
+      const data = await post("http://localhost:1337/graphql", {query: query("page1")});
+      console.log(data);
+       
+    };
+    initData();
+  }, []);
 
   const download = (e) => {
     console.log(e.target.href);
