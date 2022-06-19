@@ -24,6 +24,9 @@ function App() {
         <Route path="/watch" element={<WatchFilm/>}/> */}
           <Route path="/newProduct" element={<NewProduct />} />
           <Route path="/introduce" element={<Introduce />} />
+          <Route path="/:slug" element={<HomePage />} />
+
+          {/* <Route path="/introduce" element={<Introduce />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/banner" element={<Banner />} />
         </Routes>

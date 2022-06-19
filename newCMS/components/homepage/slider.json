@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_homepage_sliders",
+  "info": {
+    "name": "Slider",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "newsList": {
+      "type": "component",
+      "repeatable": false,
+      "component": "slider.news-list"
+    }
+  }
+}

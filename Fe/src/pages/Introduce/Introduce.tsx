@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { post } from "../../utilities/api";
 
 import query from "./query";
+import { RawData } from "pages/HomePage/HomePage";
 
 export interface IntroduceDataType{
   title?: string;
@@ -32,57 +33,41 @@ export interface IntroduceProps {
   
 }
 
-export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) => {
+export const Introduce: React.FC<IntroduceDataType> = (props) => {
 
-  const data: IntroduceDataType = {
-    title: "Introduce Game",
-    description:" Browse the unique art collection and find the perfect wallpaper for your device.",
-    imageList: [
-      {
-        image: {
-          url: Imager
-        }
-      },
-      {
-        image: {
-          url: Imager
-        }
-      },
-      {
-        image: {
-          url: Imager
-        }
-      },
-      {
-        image: {
-          url: Imager
-        }
-      },
-      {
-        image: {
-          url: Imager
-        }
-      },
-      {
-        image: {
-          url: Imager
-        }
-      },
-    ]
+  // const data: IntroduceDataType = {
+  //   title: "Introduce Game",
+  //   description:" Browse the unique art collection and find the perfect wallpaper for your device.",
+  //   imageList: [
+  //     {
+  //       image: Imager,
+  //     },
+  //     {
+  //       image: Imager,
+  //     },
+  //     {
+  //       image: Imager,
+  //     },
+  //     {
+  //       image: Imager,
+  //     },
+  //     {
+  //       image: Imager,
+  //     },
+  //     {
+  //       image: Imager,
+  //     },
+  //   ]
 
-  }
+  // }
   const mobile = useCheckMobileScreen(768);
 
-  const [a, setA] = useState();
+  const [data, setData] = useState<IntroduceDataType>();
 
   useEffect(() => {
-    const initData = async () => {
-      const data = await post("http://localhost:1337/graphql", {query: query("page1")});
-
-      console.log(data.data.data.homepages[0]);
-       
-    };
-    initData();
+    const rawData: RawData = JSON.parse(localStorage.getItem("data") || "");
+    const finalData  = rawData.sections?.find((section) => section.__typename === "ComponentHomepageIntroduce");
+    setData((finalData as IntroduceDataType));
   }, []);
 
   const download = (e: any) => {
