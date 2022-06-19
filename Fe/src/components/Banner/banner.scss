@@ -1,0 +1,46 @@
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/mixin";
+@import "src/assets/styles/variable";
+@import 'node_modules/react-modal-video/scss/modal-video.scss';
+.banner{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../assets/images/home/banner1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    flex-direction: column;
+    @media screen and (max-width: 768px) {
+    }
+    .banner_description{
+      color: white;
+      font-weight: bold;
+      background-color: rgba(121, 117, 119, 0.78);
+      padding: 5px;
+      border-radius: 2px;
+    }
+    .banner_logo{
+      width: 50%;
+      height: 200px;
+      object-fit: contain;
+    }
+    .banner_button{
+        font-size: 1rem;
+        padding: 1rem 2rem 1rem;
+        color: wheat;
+        background-color: #33aaf5;
+        border: none;
+        border-radius: 15px;
+        font-weight: bold;
+        &:hover{     
+          background-color: #0d6fac;
+          transition: all 0.8s;
+        }
+        @media screen and (max-width: 768px) {
+          margin-top: 3rem;
+          padding: 1rem 1.2rem 1rem;
+        }
+    }
+}
