@@ -20,7 +20,7 @@ export interface IntroduceDataType{
   title: string;
   description: string;
   imageList: {
-    img: string;
+  image: string;
   }[];
 }
 
@@ -35,22 +35,22 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
     description:" Browse the unique art collection and find the perfect wallpaper for your device.",
     imageList: [
       {
-        img: Imager,
+        image: Imager,
       },
       {
-        img: Imager,
+        image: Imager,
       },
       {
-        img: Imager,
+        image: Imager,
       },
       {
-        img: Imager,
+        image: Imager,
       },
       {
-        img: Imager,
+        image: Imager,
       },
       {
-        img: Imager,
+        image: Imager,
       },
     ]
 
@@ -119,13 +119,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.zoom} />
+                    <Image className={styles["img-game"]} src={item.image} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.zoom}
+                      href={item.image}
                       download
                       onClick={(e) => download(e)}
                     >
@@ -141,13 +141,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.img} />
+                    <Image className={styles["img-game"]} src={item.image} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.img}
+                      href={item.image}
                       download
                       onClick={(e) => download(e)}
                     >
