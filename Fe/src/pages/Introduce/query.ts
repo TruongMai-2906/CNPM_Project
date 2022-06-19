@@ -14,6 +14,13 @@ const query = (slug: string) => {
               image { url }
             }
           }
+          ... on ComponentHomepageStore {
+            title
+            stores {
+              storeImage { url }
+              link
+            }
+          }
         }
       }
     }

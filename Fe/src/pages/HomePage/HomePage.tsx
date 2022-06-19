@@ -16,6 +16,7 @@ import { Link, useParams } from 'react-router-dom';
 import { get, post } from '../../utilities/api';
 import query from 'pages/Introduce/query';
 import Introduce from 'pages/Introduce/Introduce';
+import Store from 'pages/Store/Store';
 
 export interface HomePageProps { }
 
@@ -42,7 +43,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     initData();
   }, []);
 
-
 const renderSection = (section: SectionName) => {
   const Component = SectionMap[section]?.component;
   if (Component) {
@@ -53,6 +53,7 @@ const renderSection = (section: SectionName) => {
 
   return (
     <div className={styles['root']}>
+      {/* <Store /> */}
      {data?.sections?.map((section) => {
         return renderSection(section.__typename);
       })}
@@ -67,6 +68,6 @@ const SectionMap = {
   ComponentHomepageBanner: { component: <>banner</>},
   ComponentHomepageIntroduce: { component: <Introduce /> },
   ComponentHomepageNews: { component: <>slide</>},
-  ComponentHomepageStore: { component: <>store</>},
+  ComponentHomepageStore: { component: <Store />},
   ComponentHomepageSignUp: { component: <>sign up</>},
 };
