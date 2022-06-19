@@ -22,8 +22,9 @@ function App() {
           {/* <Route path="/" element={<HomePage/>}></Route>
         <Route path="/detail" element={<Detail/>}></Route>
         <Route path="/watch" element={<WatchFilm/>}/> */}
+          <Route path="/:slug" element={<HomePage />} />
           <Route path="/slice" element={<Slider />} />
-          <Route path="/introduce" element={<Introduce />} />
+          {/* <Route path="/introduce" element={<Introduce />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/banner" element={<Banner />} />
         </Routes>
