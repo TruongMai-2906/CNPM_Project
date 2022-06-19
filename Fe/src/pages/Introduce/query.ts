@@ -29,6 +29,12 @@ const query = (slug: string) => {
               title
             }
        
+          ... on ComponentHomepageStore {
+            title
+            stores {
+              storeImage { url }
+              link
+            }
           }
         }
       }

@@ -55,6 +55,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 
   return (
     <div className={styles["root"]}>
+      {/* <Store /> */}
       {data?.sections?.map((section) => {
         return renderSection(section.__typename);
       })}
