@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import styles from "./slider.module.scss";
+import "./NewProduct.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   faFilter,
@@ -24,132 +25,138 @@ import SwiperCore, {
 } from "swiper";
 import { useCheckMobileScreen } from "./customHook.ts";
 export interface sliceNewProduct {
-  id: number;
-  img?: String;
-  title?: String;
-  content?: String;
+  title: string;
+  description: string;
+  newsList: {
+    title: string;
+    background: string;
+    description: string;
+    readMoreLink: string;
+  }[];
+  filters: {
+    title: string;
+  }[];
+  search: string;
 }
 // SwiperCore.use([Navigation, Autoplay, Pagination]);
-const Slice: React.FC = () => {
+const Slice: React.FC<sliceNewProduct> = (props) => {
   const useCustom = useCheckMobileScreen(768);
-  const list = [
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-    {
-      img: "https://www.w3schools.com/w3css/img_lights.jpg",
-    },
-  ];
-  const listTitle = [
-    {
-      img: "HUMANS BEHIND THE GAME",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-    {
-      img: "Join the game",
-    },
-  ];
-  const contents = [
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-    {
-      name: " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-    },
-  ];
+  const image: string = "https://www.w3schools.com/w3css/img_lights.jpg";
+  const dataSlice: sliceNewProduct = {
+    title: "Our Latest News",
+    description: `Check out what’s new at Gameloft! Deep dive into the latest news on your  <br />favorite games, as well as stories from Gamelofters all over the world.`,
+
+    newsList: [
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+      {
+        title: "HUMANS BEHIND THE GAME",
+        background: image,
+        description:
+          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
+        readMoreLink: "Read more",
+      },
+    ],
+    filters: [
+      {
+        title: "facebook",
+      },
+      {
+        title: "facebook",
+      },
+      {
+        title: "facebook",
+      },
+    ],
+    search: "Search",
+  };
+
   const [currentEvent, setCurrentEvent] = useState(0);
   return (
     <>
-      <div className={styles["container"]}>
+      <div className="newProduct">
         {" "}
-        <div className={styles["wrapper"]}>
-          <div className={styles["wrapper-left"]}>
+        <div className="newProduct-wrapper">
+          <div className="newProduct-wrapper-left">
             {" "}
-            <div className={styles["title-header"]}>Our Latest News</div>
-            <div className={styles["content-header"]}>
-              Check out what’s new at Gameloft! Deep dive into the latest news
-              on your <br></br>favorite games, as well as stories from
-              Gamelofters all over the world.
+            <div className="title-header">
+              {props?.title || dataSlice?.title || ""}
             </div>
+            <div
+              className="content-header"
+              dangerouslySetInnerHTML={{
+                __html: props?.description || dataSlice?.description || "",
+              }}
+            ></div>
           </div>
 
-          <div className={styles["wrapper-right"]}>
-            <div className={styles["wrapper-right__filter"]}>
-              <button className={styles["wrapper-right__filter-btn"]}>
+          <div className="newProduct-wrapper-right">
+            <div className="wrapper-right__filter">
+              <button className="wrapper-right__filter-btn">
                 <div>
                   <FontAwesomeIcon
-                    className={styles["wrapper-right__filter-btn__icon"]}
+                    className="wrapper-right__filter-btn__icon"
                     icon={faFilter}
                   ></FontAwesomeIcon>{" "}
                   Filter
@@ -159,10 +166,13 @@ const Slice: React.FC = () => {
                 </span>
               </button>
             </div>
-            <div className={styles["wrapper-right__search"]}>
-              <input className={styles["wrapper-right__search__input"]} />
+            <div className="wrapper-right__search">
+              <input
+                className="wrapper-right__search__input"
+                placeholder={props?.search || dataSlice?.search || ""}
+              />
               <FontAwesomeIcon
-                className={styles["wrapper-right__search__input-icon"]}
+                className="wrapper-right__search__input-icon"
                 icon={faMagnifyingGlass}
               />
             </div>
@@ -195,43 +205,46 @@ const Slice: React.FC = () => {
 
           // onSwiper={(swiper) => console.log(swiper)}
         >
-          {list.map((item, i) => {
-            return (
-              <>
-                <SwiperSlide key={i} className={styles["wiper-slide"]}>
-                  <div className={styles["wiper-slide_wrapper"]}>
-                    <div className={styles["wiper-slide_wrapper-header"]}>
-                      {listTitle[i].img}
-                      <div>-----------------</div>
+          {dataSlice.newsList &&
+            dataSlice?.newsList?.map((item, i) => {
+              return (
+                <>
+                  <SwiperSlide key={i} className="newProduct-wiper">
+                    <div className={styles["wiper-slide_wrapper"]}>
+                      <div className={styles["wiper-slide_wrapper-header"]}>
+                        {props.title || item.title || ""}
+                        <div>-----------------</div>
+                        <div
+                          className={styles["wiper-slide_wrapper-header__name"]}
+                        >
+                          {props.description || item.description || ""}
+                        </div>
+                      </div>
+
+                      <div>
+                        <img
+                          className={styles["wiper-slide_wrapper__img"]}
+                          src={item.background || ""}
+                        ></img>
+                      </div>
                       <div
-                        className={styles["wiper-slide_wrapper-header__name"]}
-                      >
-                        {contents[i].name}
+                        className={styles["wiper-slide_wrapper--pink"]}
+                      ></div>
+                      <div className={styles["wiper-slide_wrapper__title"]}>
+                        {props.title || item.title || ""}
+                      </div>
+                      <div className={styles["wiper-slide_wrapper-footer"]}>
+                        <button
+                          className={styles["wiper-slide_wrapper-footer__btn"]}
+                        >
+                          {item.readMoreLink || ""}
+                        </button>
                       </div>
                     </div>
-
-                    <div>
-                      <img
-                        className={styles["wiper-slide_wrapper__img"]}
-                        src={item.img}
-                      ></img>
-                    </div>
-                    <div className={styles["wiper-slide_wrapper--pink"]}></div>
-                    <div className={styles["wiper-slide_wrapper__title"]}>
-                      {listTitle[i].img}
-                    </div>
-                    <div className={styles["wiper-slide_wrapper-footer"]}>
-                      <button
-                        className={styles["wiper-slide_wrapper-footer__btn"]}
-                      >
-                        Read More
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              </>
-            );
-          })}
+                  </SwiperSlide>
+                </>
+              );
+            })}
         </Swiper>
       </div>
     </>
