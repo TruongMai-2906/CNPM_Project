@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
-import "./NewProduct.scss";
+import "./News.scss";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,6 +25,9 @@ import SwiperCore, {
   Keyboard,
 } from "swiper";
 import { useCheckMobileScreen } from "./customHook";
+import { Link } from "react-router-dom";
+import { RawData } from "pages/HomePage/HomePage";
+import { IntroduceDataType } from "pages/Introduce/Introduce";
 export interface NewProduct {
   title?: string;
   description?: string;
@@ -42,17 +45,29 @@ export interface NewProduct {
   searchText?: string;
 }
 // SwiperCore.use([Navigation, Autoplay, Pagination]);
-const NewProduct: React.FC<NewProduct> = (props) => {
+const News: React.FC<NewProduct> = (props) => {
+  const [search, setSearch] = useState<String>();
   const [news, setNews] = useState<NewProduct>();
   const useCustom = useCheckMobileScreen(768);
   const image: string = "https://www.w3schools.com/w3css/img_lights.jpg";
+
+  // const [data, setData] = useState<NewProduct>();
+
+  // useEffect(() => {
+  //   const rawData: RawData = JSON.parse(localStorage.getItem("data") || "");
+  //   const finalData = rawData.sections?.find(
+  //     (section) => section.__typename === "ComponentHomepageNews"
+  //   );
+  //   setData(finalData as NewProduct);
+  // }, []);
+
   const dataSlice: NewProduct = {
     title: "Our Latest News",
     description: `Check out what’s new at Gameloft! Deep dive into the latest news on your  <br />favorite games, as well as stories from Gamelofters all over the world.`,
 
     newsList: [
       {
-        title: "HUMANS BEHIND THE GAME",
+        title: "hOANG",
 
         background: {
           url: image,
@@ -157,8 +172,12 @@ const NewProduct: React.FC<NewProduct> = (props) => {
     ],
     searchText: "Search",
   };
-  setNews(dataSlice);
-  console.log(news);
+  const handleSearch = (e: any) => {
+    const data = dataSlice.newsList?.find((value, index) =>
+      value.title.includes(e.target.value)
+    );
+    console.log(data);
+  };
   const menu = (
     <Menu
       items={[
@@ -220,6 +239,7 @@ const NewProduct: React.FC<NewProduct> = (props) => {
             </div>
             <div className="newProduct-wrapper-right__search">
               <input
+                onChange={(e) => handleSearch(e)}
                 className="newProduct-wrapper-right__search__input"
                 placeholder={props?.searchText || dataSlice?.searchText || ""}
               />
@@ -257,7 +277,7 @@ const NewProduct: React.FC<NewProduct> = (props) => {
 
           // onSwiper={(swiper) => console.log(swiper)}
         >
-          {dataSlice.newsList &&
+          {dataSlice?.newsList &&
             dataSlice?.newsList?.map((item, i) => {
               return (
                 <>
@@ -296,4 +316,4 @@ const NewProduct: React.FC<NewProduct> = (props) => {
     </>
   );
 };
-export default NewProduct;
+export default News;

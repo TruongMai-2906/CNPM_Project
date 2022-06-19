@@ -20,7 +20,7 @@
       "components": [
         "homepage.banner",
         "homepage.introduce",
-        "homepage.slider"
+        "homepage.news"
       ]
     }
   }

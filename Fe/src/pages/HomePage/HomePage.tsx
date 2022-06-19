@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styles from './HomePage.module.scss';
+import React, { useEffect, useState } from "react";
+import styles from "./HomePage.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { merge } from "lodash";
 // Import Swiper styles
@@ -9,17 +9,18 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-import Banner from '../../assets/images/home/banner1.jpg';
-import Banner2 from '../../assets/images/home/banner2.jpg';
-import Bannerctv from '../../assets/images/home/bannerctv.jpg';
-import { Link, useParams } from 'react-router-dom';
-import { get, post } from '../../utilities/api';
-import query from 'pages/Introduce/query';
-import Introduce from 'pages/Introduce/Introduce';
+import Banner from "../../assets/images/home/banner1.jpg";
+import Banner2 from "../../assets/images/home/banner2.jpg";
+import Bannerctv from "../../assets/images/home/bannerctv.jpg";
+import { Link, useParams } from "react-router-dom";
+import { get, post } from "../../utilities/api";
+import query from "pages/Introduce/query";
+import Introduce from "pages/Introduce/Introduce";
+import News from "pages/news/News";
 
-export interface HomePageProps { }
+export interface HomePageProps {}
 
-export interface HomePageDataType { }
+export interface HomePageDataType {}
 
 type SectionName = keyof typeof SectionMap;
 
@@ -35,38 +36,39 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 
   useEffect(() => {
     const initData = async () => {
-      const data = await post("http://localhost:1337/graphql", {query: query(slug || "")});
+      const data = await post("http://localhost:1337/graphql", {
+        query: query(slug || ""),
+      });
       setData(data.data.data.homepages[0]);
       localStorage.setItem("data", JSON.stringify(data.data.data.homepages[0]));
     };
     initData();
   }, []);
 
-
-const renderSection = (section: SectionName) => {
-  const Component = SectionMap[section]?.component;
-  if (Component) {
-    return Component;
-  }
-  return null;
-};
+  const renderSection = (section: SectionName) => {
+    const Component = SectionMap[section]?.component;
+    if (Component) {
+      return Component;
+    }
+    return null;
+  };
 
   return (
-    <div className={styles['root']}>
-     {data?.sections?.map((section) => {
+    <div className={styles["root"]}>
+      {data?.sections?.map((section) => {
         return renderSection(section.__typename);
       })}
     </div>
-  )
+  );
 };
 
 export default HomePage;
 
 const SectionMap = {
   // default product page sections
-  ComponentHomepageBanner: { component: <>banner</>},
+  ComponentHomepageBanner: { component: <>banner</> },
   ComponentHomepageIntroduce: { component: <Introduce /> },
-  ComponentHomepageNews: { component: <>slide</>},
-  ComponentHomepageStore: { component: <>store</>},
-  ComponentHomepageSignUp: { component: <>sign up</>},
+  ComponentHomepageNews: { component: <News /> },
+  ComponentHomepageStore: { component: <>store</> },
+  ComponentHomepageSignUp: { component: <>sign up</> },
 };
