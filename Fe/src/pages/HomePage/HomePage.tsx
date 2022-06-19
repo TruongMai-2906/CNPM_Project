@@ -12,7 +12,7 @@ import Banner from '../../assets/images/home/banner1.jpg';
 import Banner2 from '../../assets/images/home/banner2.jpg';
 import Bannerctv from '../../assets/images/home/bannerctv.jpg';
 import { Link } from 'react-router-dom';
-import { get } from '../../utilities/api.ts';
+import { get } from '../../utilities/api';
 
 export interface HomePageProps { }
 
@@ -23,7 +23,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   const [data, setData] = useState();
   useEffect( () => {
     
-    if (!data) get('https://jsonplaceholder.typicode.com/todos/1').then((res) => setData(res.data));
+    if (!data) get('https://jsonplaceholder.typicode.com/todos/1').then((res: any) => setData(res.data));
    ;
   }, [])
 

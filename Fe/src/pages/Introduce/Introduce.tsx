@@ -10,17 +10,21 @@ import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Imager from "../../assets/images/home/banner1.jpg";
-import { useCheckMobileScreen } from './customeHooks.ts';
+import { useCheckMobileScreen } from './customeHooks';
 import "antd/dist/antd.css";
 import { Button, Image } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { post } from "../../utilities/api";
 
+import query from "./query";
 
 export interface IntroduceDataType{
-  title: string;
-  description: string;
-  imageList: {
-    img: string;
+  title?: string;
+  description?: string;
+  imageList?: {
+    image: {
+      url: string;
+    };
   }[];
 }
 
@@ -35,48 +39,53 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
     description:" Browse the unique art collection and find the perfect wallpaper for your device.",
     imageList: [
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        img: Imager,
+        image: {
+          url: Imager
+        }
       },
     ]
 
   }
-
-  // const list = [
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_3_thumb_674e8146d0.jpg",
-  //     zoom: imager,
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_1_thumb_bf93a70b3e.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_1_fec2a573ab.jpg",
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_2_thumb_0af32b71de.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_2_137ee07e25.jpg",
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_4_thumb_69fea1dfa2.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_4_thumb_69fea1dfa2.jpg",
-  //   },
-  // ];
   const mobile = useCheckMobileScreen(768);
 
-  const download = (e) => {
+  const [a, setA] = useState();
+
+  useEffect(() => {
+    const initData = async () => {
+      const data = await post("http://localhost:1337/graphql", {query: query("page1")});
+
+      console.log(data.data.data.homepages[0]);
+       
+    };
+    initData();
+  }, []);
+
+  const download = (e: any) => {
     console.log(e.target.href);
     fetch(e.target.href, {
       method: "GET",
@@ -119,13 +128,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.zoom} />
+                    <Image className={styles["img-game"]} src={item.image.url} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.zoom}
+                      href={item.image.url}
                       download
                       onClick={(e) => download(e)}
                     >
@@ -141,13 +150,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.img} />
+                    <Image className={styles["img-game"]} src={item.image.url} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.img}
+                      href={item.image.url}
                       download
                       onClick={(e) => download(e)}
                     >
