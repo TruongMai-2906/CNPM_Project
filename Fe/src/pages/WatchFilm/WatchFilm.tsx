@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./WatchFilm.module.scss";
-import Recommend from "../../components/Content/Recommend/Recommend.tsx";
-import Related from "../../components/Content/Related/Related.tsx";
+import Recommend from "../../components/Content/Recommend/Recommend";
+import Related from "../../components/Content/Related/Related";
 import ReactPlayer from "react-player";
 
 export interface WatchFilmProps {}

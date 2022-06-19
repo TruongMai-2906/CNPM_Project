@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Imager from "../../assets/images/home/banner1.jpg";
-import { useCheckMobileScreen } from './customeHooks.ts';
+import { useCheckMobileScreen } from './customeHooks';
 import "antd/dist/antd.css";
 import { Button, Image } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,9 +19,9 @@ import { post } from "../../utilities/api";
 import query from "./query";
 
 export interface IntroduceDataType{
-  title: string;
-  description: string;
-  imageList: {
+  title?: string;
+  description?: string;
+  imageList?: {
     image: {
       url: string;
     };
@@ -66,13 +66,14 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
   useEffect(() => {
     const initData = async () => {
       const data = await post("http://localhost:1337/graphql", {query: query("page1")});
-      console.log(data);
+
+      console.log(data.data.data.homepages[0]);
        
     };
     initData();
   }, []);
 
-  const download = (e) => {
+  const download = (e: any) => {
     console.log(e.target.href);
     fetch(e.target.href, {
       method: "GET",

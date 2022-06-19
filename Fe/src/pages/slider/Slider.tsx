@@ -22,7 +22,7 @@ import SwiperCore, {
   Mousewheel,
   Keyboard,
 } from "swiper";
-import { useCheckMobileScreen } from "./customHook.ts";
+import { useCheckMobileScreen } from "./customHook";
 export interface sliceNewProduct {
   id: number;
   img?: String;
