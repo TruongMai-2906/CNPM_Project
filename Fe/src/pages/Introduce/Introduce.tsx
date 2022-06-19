@@ -20,7 +20,9 @@ export interface IntroduceDataType{
   title: string;
   description: string;
   imageList: {
-  image: string;
+    image: {
+      url: string;
+    };
   }[];
 }
 
@@ -55,25 +57,6 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
     ]
 
   }
-
-  // const list = [
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_3_thumb_674e8146d0.jpg",
-  //     zoom: imager,
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_1_thumb_bf93a70b3e.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_1_fec2a573ab.jpg",
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_2_thumb_0af32b71de.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_2_137ee07e25.jpg",
-  //   },
-  //   {
-  //     img: "https://games.assets.gameloft.com/assets/MOE_exclusive_4_thumb_69fea1dfa2.jpg",
-  //     zoom: "https://games.assets.gameloft.com/assets/MOE_exclusive_4_thumb_69fea1dfa2.jpg",
-  //   },
-  // ];
   const mobile = useCheckMobileScreen(768);
 
   const download = (e) => {
@@ -119,13 +102,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.image} />
+                    <Image className={styles["img-game"]} src={item.image.url} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.image}
+                      href={item.image.url}
                       download
                       onClick={(e) => download(e)}
                     >
@@ -141,13 +124,13 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.image} />
+                    <Image className={styles["img-game"]} src={item.image.url} />
                   </div>
                   <div className={styles["button"]}>
                   <Button
                       type="primary"
                       shape="circle"
-                      href={item.image}
+                      href={item.image.url}
                       download
                       onClick={(e) => download(e)}
                     >
