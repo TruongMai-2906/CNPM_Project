@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Banner from "./components/Banner/Banner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WatchFilm from "./pages/WatchFilm/WatchFilm";
-import Slider from "./pages/slider/Slider";
+import News from "./pages/news/News";
 import Introduce from "./pages/Introduce/Introduce";
 import Register from "./pages/Register/Register";
 function App() {
@@ -22,8 +22,11 @@ function App() {
           {/* <Route path="/" element={<HomePage/>}></Route>
         <Route path="/detail" element={<Detail/>}></Route>
         <Route path="/watch" element={<WatchFilm/>}/> */}
-          <Route path="/slice" element={<Slider />} />
+          <Route path="/news" element={<News />} />
           <Route path="/introduce" element={<Introduce />} />
+          <Route path="/:slug" element={<HomePage />} />
+
+          {/* <Route path="/introduce" element={<Introduce />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/banner" element={<Banner />} />
         </Routes>

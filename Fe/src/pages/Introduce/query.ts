@@ -14,10 +14,32 @@ const query = (slug: string) => {
               image { url }
             }
           }
+          ... on ComponentHomepageNews {
+            title
+            description
+            newsList {
+              title
+              background{
+                url
+              }
+              description
+              readMoreLink
+            }
+            filters{
+              title
+            }
+       
+          ... on ComponentHomepageStore {
+            title
+            stores {
+              storeImage { url }
+              link
+            }
+          }
         }
       }
     }
-  `
-}
+  `;
+};
 
 export default query;

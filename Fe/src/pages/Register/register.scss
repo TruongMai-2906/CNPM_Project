@@ -114,5 +114,20 @@
       
         
     }
- 
-}
+    .accept_me {
+      input {
+        width: auto;
+        margin: 0 12px;
+      }
+      display: flex;
+      margin: 1rem 0;
+      width: 80%;
+    }
+    button {
+      padding: 12px;
+      background-color: aqua;
+      border: none;
+      border-radius: 6px;
+    }
+  }
+
