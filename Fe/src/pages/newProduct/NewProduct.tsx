@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import styles from "./slider.module.scss";
 import "./NewProduct.scss";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, Space } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   faFilter,
@@ -24,95 +25,120 @@ import SwiperCore, {
   Keyboard,
 } from "swiper";
 import { useCheckMobileScreen } from "./customHook";
-export interface sliceNewProduct {
-  title: string;
-  description: string;
-  newsList: {
+export interface NewProduct {
+  title?: string;
+  description?: string;
+  newsList?: {
     title: string;
-    background: string;
+    background: {
+      url: string;
+    };
     description: string;
     readMoreLink: string;
   }[];
-  filters: {
+  filters?: {
     title: string;
   }[];
-  search: string;
+  searchText?: string;
 }
 // SwiperCore.use([Navigation, Autoplay, Pagination]);
-const Slice: React.FC<sliceNewProduct> = (props) => {
+const NewProduct: React.FC<NewProduct> = (props) => {
+  const [news, setNews] = useState<NewProduct>();
   const useCustom = useCheckMobileScreen(768);
   const image: string = "https://www.w3schools.com/w3css/img_lights.jpg";
-  const dataSlice: sliceNewProduct = {
+  const dataSlice: NewProduct = {
     title: "Our Latest News",
     description: `Check out what’s new at Gameloft! Deep dive into the latest news on your  <br />favorite games, as well as stories from Gamelofters all over the world.`,
 
     newsList: [
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+
+        background: {
+          url: image,
+        },
+
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
       },
       {
         title: "HUMANS BEHIND THE GAME",
-        background: image,
+        background: {
+          url: image,
+        },
         description:
           " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
         readMoreLink: "Read more",
@@ -129,9 +155,31 @@ const Slice: React.FC<sliceNewProduct> = (props) => {
         title: "facebook",
       },
     ],
-    search: "Search",
+    searchText: "Search",
   };
-
+  setNews(dataSlice);
+  console.log(news);
+  const menu = (
+    <Menu
+      items={[
+        {
+          label: "Human",
+          key: "0",
+        },
+        {
+          label: "truong",
+          key: "1",
+        },
+        // {
+        //   type: "divider",
+        // },
+        {
+          label: "facebook",
+          key: "3",
+        },
+      ]}
+    />
+  );
   const [currentEvent, setCurrentEvent] = useState(0);
   return (
     <>
@@ -152,27 +200,31 @@ const Slice: React.FC<sliceNewProduct> = (props) => {
           </div>
 
           <div className="newProduct-wrapper-right">
-            <div className="wrapper-right__filter">
-              <button className="wrapper-right__filter-btn">
-                <div>
-                  <FontAwesomeIcon
-                    className="wrapper-right__filter-btn__icon"
-                    icon={faFilter}
-                  ></FontAwesomeIcon>{" "}
-                  Filter
-                </div>
-                <span>
-                  <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
-                </span>
-              </button>
+            <div className="newProduct-wrapper-right__filter">
+              <Dropdown overlay={menu} trigger={["click"]}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <button className="newProduct-wrapper-right__filter-btn">
+                    <div style={{ color: "black" }}>
+                      <FontAwesomeIcon
+                        className="newProduct-wrapper-right__filter-btn__icon"
+                        icon={faFilter}
+                      ></FontAwesomeIcon>{" "}
+                      Filter
+                    </div>
+                    <span style={{ color: "black" }}>
+                      <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
+                    </span>
+                  </button>
+                </a>
+              </Dropdown>
             </div>
-            <div className="wrapper-right__search">
+            <div className="newProduct-wrapper-right__search">
               <input
-                className="wrapper-right__search__input"
-                placeholder={props?.search || dataSlice?.search || ""}
+                className="newProduct-wrapper-right__search__input"
+                placeholder={props?.searchText || dataSlice?.searchText || ""}
               />
               <FontAwesomeIcon
-                className="wrapper-right__search__input-icon"
+                className="newProduct-wrapper-right__search__input-icon"
                 icon={faMagnifyingGlass}
               />
             </div>
@@ -193,7 +245,7 @@ const Slice: React.FC<sliceNewProduct> = (props) => {
           //   disableOnInteraction: true,
           // }}
           modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
-          className={styles.swiper}
+          className="swiper"
           onInit={(swiper) => {
             setCurrentEvent(swiper.activeIndex);
             console.log("first");
@@ -210,33 +262,27 @@ const Slice: React.FC<sliceNewProduct> = (props) => {
               return (
                 <>
                   <SwiperSlide key={i} className="newProduct-wiper">
-                    <div className={styles["wiper-slide_wrapper"]}>
-                      <div className={styles["wiper-slide_wrapper-header"]}>
+                    <div className="newProduct-wiper__slide">
+                      <div className="newProduct-wiper__slide-header">
                         {props.title || item.title || ""}
                         <div>-----------------</div>
-                        <div
-                          className={styles["wiper-slide_wrapper-header__name"]}
-                        >
+                        <div className="newProduct-wiper__slide-header__name">
                           {props.description || item.description || ""}
                         </div>
                       </div>
 
                       <div>
                         <img
-                          className={styles["wiper-slide_wrapper__img"]}
-                          src={item.background || ""}
+                          className="newProduct-wiper__slide-img"
+                          src={item.background.url || ""}
                         ></img>
                       </div>
-                      <div
-                        className={styles["wiper-slide_wrapper--pink"]}
-                      ></div>
-                      <div className={styles["wiper-slide_wrapper__title"]}>
+                      <div className="newProduct-wiper__slide-pink"></div>
+                      <div className="newProduct-wiper__slide-title">
                         {props.title || item.title || ""}
                       </div>
-                      <div className={styles["wiper-slide_wrapper-footer"]}>
-                        <button
-                          className={styles["wiper-slide_wrapper-footer__btn"]}
-                        >
+                      <div className="newProduct-wiper__slide-footer">
+                        <button className="newProduct-wiper__slide-footer__btn">
                           {item.readMoreLink || ""}
                         </button>
                       </div>
@@ -250,4 +296,4 @@ const Slice: React.FC<sliceNewProduct> = (props) => {
     </>
   );
 };
-export default Slice;
+export default NewProduct;
