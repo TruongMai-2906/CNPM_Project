@@ -37,22 +37,34 @@ export const Introduce: React.FC<IntroduceProps & IntroduceDataType> = (props) =
     description:" Browse the unique art collection and find the perfect wallpaper for your device.",
     imageList: [
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
       {
-        image: Imager,
+        image: {
+          url: Imager
+        }
       },
     ]
 
