@@ -1,46 +1,154 @@
 @import "src/assets/styles/global.scss";
 @import "src/assets/styles/mixin";
 @import "src/assets/styles/variable";
-@import 'node_modules/react-modal-video/scss/modal-video.scss';
-.banner{
-    height: 100vh;
+
+.com-banner {
+  position: relative;
+  font-family: Montserrat, sans-serif;
+  height: 100vh;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 2;
+    transform: translateX(-50%);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('../../assets/images/home/banner1.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     flex-direction: column;
-    @media screen and (max-width: 768px) {
+    gap: 3rem;
+    margin-bottom: 5rem;
+    max-width: 85%;
+    text-align: center;
+  }
+
+  .banner {
+    &__logo {
+      max-width: 320px;
+      margin: 0 auto;
+
+      @include at($desktop) {
+        max-width: 400px;
+      }
     }
-    .banner_description{
-      color: white;
-      font-weight: bold;
-      background-color: rgba(121, 117, 119, 0.78);
-      padding: 5px;
-      border-radius: 2px;
+
+    &__description {
+      color: #fff;
+      font-size: 1rem;
     }
-    .banner_logo{
-      width: 50%;
-      height: 200px;
-      object-fit: contain;
+
+    &__button {
+      min-width: 140px;
+      min-height: 50px;
+      width: fit-content;
+      padding: 1rem 2.5rem;
+      border: none;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 8px;
+      background-color: #33aaf5;
+      color: #fff;
+      box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     }
-    .banner_button{
-        font-size: 1rem;
-        padding: 1rem 2rem 1rem;
-        color: wheat;
-        background-color: #33aaf5;
-        border: none;
-        border-radius: 15px;
-        font-weight: bold;
-        &:hover{     
-          background-color: #0d6fac;
-          transition: all 0.8s;
-        }
-        @media screen and (max-width: 768px) {
-          margin-top: 3rem;
-          padding: 1rem 1.2rem 1rem;
-        }
+  }
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(0deg,rgba(0,0,0,.5),transparent);
+  }
+
+  &__popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0,0,0,.8);
+    display: none;
+
+    &--show {
+      display: block;
     }
+
+    &-close {
+      position: absolute;
+      top: 2vh;
+      right: 1vw;
+      color: #fff;
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90vw;
+      height: auto;
+    }
+  }
 }
+
+
+// .banner{
+//     height: 100vh;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-image: url('../../assets/images/home/banner1.jpg');
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: 100% 100%;
+//     flex-direction: column;
+//     @media screen and (max-width: 768px) {
+//     }
+//     .banner_description{
+//       color: white;
+//       font-weight: bold;
+//       background-color: rgba(121, 117, 119, 0.78);
+//       padding: 5px;
+//       border-radius: 2px;
+//     }
+//     .banner_logo{
+//       width: 50%;
+//       height: 200px;
+//       object-fit: contain;
+//     }
+//     .banner_button{
+//         font-size: 1rem;
+//         padding: 1rem 2rem 1rem;
+//         color: wheat;
+//         background-color: #33aaf5;
+//         border: none;
+//         border-radius: 15px;
+//         font-weight: bold;
+//         &:hover{     
+//           background-color: #0d6fac;
+//           transition: all 0.8s;
+//         }
+//         @media screen and (max-width: 768px) {
+//           margin-top: 3rem;
+//           padding: 1rem 1.2rem 1rem;
+//         }
+//     }
+// }

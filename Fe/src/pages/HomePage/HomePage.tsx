@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-import Banner from "../../assets/images/home/banner1.jpg";
 import Banner2 from "../../assets/images/home/banner2.jpg";
 import Bannerctv from "../../assets/images/home/bannerctv.jpg";
 import { Link, useParams } from "react-router-dom";
@@ -17,6 +16,8 @@ import { get, post } from "../../utilities/api";
 import query from "pages/Introduce/query";
 import Introduce from "pages/Introduce/Introduce";
 import News from "pages/news/News";
+import Store from "pages/Store/Store";
+import Banner from "../../components/Banner/Banner";
 
 export interface HomePageProps {}
 
@@ -67,9 +68,10 @@ export default HomePage;
 
 const SectionMap = {
   // default product page sections
-  ComponentHomepageBanner: { component: <>banner</> },
-  ComponentHomepageIntroduce: { component: <Introduce /> },
+  ComponentHomepageBanner: { component: <Banner></Banner> },
+  ComponentHomepageIntroduce: { component: <Introduce></Introduce> },
   ComponentHomepageNews: { component: <News /> },
-  ComponentHomepageStore: { component: <>store</> },
+  ComponentHomepageStore: { component: <Store></Store> },
   ComponentHomepageSignUp: { component: <>sign up</> },
 };
+

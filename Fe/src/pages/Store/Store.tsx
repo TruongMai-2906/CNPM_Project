@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import './Store.scss';
 import GoogleStore from "../../assets/images/home/googleplay.png";
 import AppStore from "../../assets/images/home/appstore.png";
+import { SImage } from 'types/types';
 
 export interface StoreProps {}
 
 export interface StoreDataType {
   title?: string;
   stores?: {
-    storeImage: {
-      url: string;
-    },
+    storeImage: SImage;
     link: string;
   }[];
 }

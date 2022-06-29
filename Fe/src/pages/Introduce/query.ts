@@ -6,6 +6,11 @@ const query = (slug: string) => {
         sections {
           __typename
           ... on ComponentHomepageBanner {
+            background { url }
+            backgroundMobile { url }
+            logo { url }
+            description
+            buttonText
             link
           }
           ... on ComponentHomepageIntroduce {
@@ -18,17 +23,14 @@ const query = (slug: string) => {
             title
             description
             newsList {
-              title
+              type
               background{
                 url
               }
               description
               readMoreLink
             }
-            filters{
-              title
-            }
-       
+          }
           ... on ComponentHomepageStore {
             title
             stores {

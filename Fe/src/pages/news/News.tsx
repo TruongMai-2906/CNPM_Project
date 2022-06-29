@@ -1,33 +1,21 @@
 import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import "./News.scss";
-import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space } from "antd";
-import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  faFilter,
-  faAngleDown,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { MenuProps } from 'antd';
+import { DownOutlined, FilterOutlined, LeftOutlined, RightOutlined, SearchOutlined } from "@ant-design/icons";
+import { Dropdown, Menu } from "antd";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// import "./styles.css";
 
-import SwiperCore, {
-  Autoplay,
-  Navigation,
-  Pagination,
-  Mousewheel,
-  Keyboard,
-} from "swiper";
+
 import { useCheckMobileScreen } from "./customHook";
-import { Link } from "react-router-dom";
 import { RawData } from "pages/HomePage/HomePage";
-import { IntroduceDataType } from "pages/Introduce/Introduce";
+import { SImage } from "types/types";
 export interface NewProduct {
   title?: string;
   description?: string;
@@ -44,276 +32,217 @@ export interface NewProduct {
   }[];
   searchText?: string;
 }
-// SwiperCore.use([Navigation, Autoplay, Pagination]);
-const News: React.FC<NewProduct> = (props) => {
-  const [search, setSearch] = useState<String>();
-  const [news, setNews] = useState<NewProduct>();
-  const useCustom = useCheckMobileScreen(768);
-  const image: string = "https://www.w3schools.com/w3css/img_lights.jpg";
 
-  // const [data, setData] = useState<NewProduct>();
+export interface NewsDataType {
+  title?: string;
+  description?: string;
+  newsList?: NewsCardDataType[];
+}
 
-  // useEffect(() => {
-  //   const rawData: RawData = JSON.parse(localStorage.getItem("data") || "");
-  //   const finalData = rawData.sections?.find(
-  //     (section) => section.__typename === "ComponentHomepageNews"
-  //   );
-  //   setData(finalData as NewProduct);
-  // }, []);
+export interface NewsCardDataType {
+  type: "facebook" | "twitter" | "linkedln";
+  background: SImage;
+  description: string;
+  readMoreLink: string;
+}
 
-  const dataSlice: NewProduct = {
+const News: React.FC<NewsDataType> = (props) => {
+  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  const [totalSlide, setTotalSlide] = useState<number>(0);
+
+  const [initCardList, setInitCardList] = useState<NewsCardDataType[]>([]);
+  const [searchList, setSearchList] = useState<NewsDataType>();
+
+  const [data, setData] = useState<NewsDataType>({
     title: "Our Latest News",
-    description: `Check out what’s new at Gameloft! Deep dive into the latest news on your  <br />favorite games, as well as stories from Gamelofters all over the world.`,
-
+    description: "Check out what’s new at Gameloft! Deep dive into the latest news on your favorite games, as well as stories from Gamelofters all over the world.",
     newsList: [
       {
-        title: "hOANG",
-
-        background: {
-          url: image,
-        },
-
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
+        type: "facebook",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
       },
       {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
+        type: "linkedln",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
       },
       {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
+        type: "twitter",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
+      },      
+      {
+        type: "facebook",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online truong`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
       },
       {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
+        type: "facebook",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
       },
       {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
-      },
-      {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
-      },
-      {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
-      },
-      {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
-      },
-      {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
-      },
-      {
-        title: "HUMANS BEHIND THE GAME",
-        background: {
-          url: image,
-        },
-        description:
-          " Andrei Streche is a game producer at Gameloft Bucharest on one of our ambitious, unannounced, cross-platform games.",
-        readMoreLink: "Read more",
+        type: "linkedln",
+        description: `Gameloft What's New Review #15
+        We have plenty of events for you this week, and the chance to become an official content creator!
+        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
+        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+        readMoreLink: "",
       },
     ],
-    filters: [
-      {
-        title: "facebook",
-      },
-      {
-        title: "facebook",
-      },
-      {
-        title: "facebook",
-      },
-    ],
-    searchText: "Search",
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("data")) {
+      const rawData: RawData = JSON.parse(localStorage.getItem("data") || "");
+      const finalData  = rawData.sections?.find((section) => section.__typename === "ComponentHomepageNews");
+      setData(finalData as NewsDataType);
+      setInitCardList((finalData as NewsDataType).newsList!);
+    }
+
+    //remove when call api
+    setInitCardList(data?.newsList!);
+  }, []);
+
+  const onClick: MenuProps['onClick'] = ({ key }) => {
+    const filterData = key === "all" ? initCardList : initCardList.filter((item) => item.type === key);
+    console.log(filterData);
+    setData({...data, newsList: filterData});
+    setTotalSlide(filterData.length);
+    setSearchList(undefined);
   };
-  const handleSearch = (e: any) => {
-    const data = dataSlice.newsList?.find((value, index) =>
-      value.title.includes(e.target.value)
-    );
-    console.log(data);
-  };
+
+  const handleSearch = (e: HTMLInputElement) => {
+    console.log(e.value);
+    const filterData = data.newsList?.filter((item) => item.description.includes(e.value));
+    setSearchList({...data, newsList: filterData});
+    setTotalSlide(filterData?.length || 0);
+  }
+  
   const menu = (
     <Menu
+      onClick={onClick}
       items={[
         {
-          label: "Human",
-          key: "0",
+          label: 'Facebook',
+          key: 'facebook',
         },
         {
-          label: "truong",
-          key: "1",
+          label: 'Twitter',
+          key: 'twitter',
         },
-        // {
-        //   type: "divider",
-        // },
         {
-          label: "facebook",
-          key: "3",
+          label: 'Linkedln',
+          key: 'linkedln',
+        },
+        {
+          label: 'All',
+          key: 'all',
         },
       ]}
     />
   );
-  const [currentEvent, setCurrentEvent] = useState(0);
-  return (
-    <>
-      <div className="newProduct">
-        {" "}
-        <div className="newProduct-wrapper">
-          <div className="newProduct-wrapper-left">
-            {" "}
-            <div className="title-header">
-              {props?.title || dataSlice?.title || ""}
-            </div>
-            <div
-              className="content-header"
-              dangerouslySetInnerHTML={{
-                __html: props?.description || dataSlice?.description || "",
-              }}
-            ></div>
-          </div>
 
-          <div className="newProduct-wrapper-right">
-            <div className="newProduct-wrapper-right__filter">
-              <Dropdown overlay={menu} trigger={["click"]}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <button className="newProduct-wrapper-right__filter-btn">
-                    <div style={{ color: "black" }}>
-                      <FontAwesomeIcon
-                        className="newProduct-wrapper-right__filter-btn__icon"
-                        icon={faFilter}
-                      ></FontAwesomeIcon>{" "}
-                      Filter
-                    </div>
-                    <span style={{ color: "black" }}>
-                      <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
-                    </span>
-                  </button>
-                </a>
-              </Dropdown>
-            </div>
-            <div className="newProduct-wrapper-right__search">
-              <input
-                onChange={(e) => handleSearch(e)}
-                className="newProduct-wrapper-right__search__input"
-                placeholder={props?.searchText || dataSlice?.searchText || ""}
-              />
-              <FontAwesomeIcon
-                className="newProduct-wrapper-right__search__input-icon"
-                icon={faMagnifyingGlass}
-              />
-            </div>
+
+  return (
+    <div className="com-news">
+      <div className="com-news-top">
+        <div className="com-news__content">
+          <div className="com-news__title">{data?.title}</div>
+          <div className="com-news__description">{data?.description}</div>
+        </div>
+        <div className="com-news__button">
+          <div className="com-news__button-filter">
+            <Dropdown overlay={menu} className="filter-list">
+              <a onClick={e => e.preventDefault()}>
+                <div>
+                  <FilterOutlined />
+                  Filter
+                </div>
+                <DownOutlined />
+              </a>
+            </Dropdown>
+          </div>
+          <div className="com-news__button-search">
+            <SearchOutlined />
+            <input type="text" onChange={(e) => handleSearch(e.target)}/>
           </div>
         </div>
+      </div>
+      <div>
         <Swiper
-          cssMode={true}
-          // navigation={true}
-          spaceBetween={30}
-          slidesPerView={useCustom ? 2 : 4}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          watchOverflow={true}
-          // centeredSlides={true}
-          // autoplay={{
-          //   delay: 2000,
-          //   disableOnInteraction: true,
-          // }}
-          modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
-          className="swiper"
-          onInit={(swiper) => {
-            setCurrentEvent(swiper.activeIndex);
-            console.log("first");
-          }}
-          // onSlideChange={(swiper) => {
-          //   setCurrentEvent(swiper.activeIndex);
-          // }}
-          onSlideChange={() => console.log("slide change")}
-
-          // onSwiper={(swiper) => console.log(swiper)}
+          spaceBetween={50}
+          slidesPerView={"auto"}
+          centeredSlides={true}
+          scrollbar={{ draggable: true }}
+          onInit={(swiper) => setTotalSlide(swiper.slides.length)}
+          // onSwiper={(swiper) => setTotalSlide(swiper.slides.length)}
+          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
+          className="com-news__slider"
         >
-          {dataSlice?.newsList &&
-            dataSlice?.newsList?.map((item, i) => {
-              return (
-                <>
-                  <SwiperSlide key={i} className="newProduct-wiper">
-                    <div className="newProduct-wiper__slide">
-                      <div className="newProduct-wiper__slide-header">
-                        {props.title || item.title || ""}
-                        <div>-----------------</div>
-                        <div className="newProduct-wiper__slide-header__name">
-                          {props.description || item.description || ""}
-                        </div>
-                      </div>
+          {searchList && searchList?.newsList?.map((news, index) => 
+            <SwiperSlide className="com-news__slide" key={`slide-${index}`}>
+              <NewsCard {...news}></NewsCard>
+            </SwiperSlide>
+          )}
 
-                      <div>
-                        <img
-                          className="newProduct-wiper__slide-img"
-                          src={item.background.url || ""}
-                        ></img>
-                      </div>
-                      <div className="newProduct-wiper__slide-pink"></div>
-                      <div className="newProduct-wiper__slide-title">
-                        {props.title || item.title || ""}
-                      </div>
-                      <div className="newProduct-wiper__slide-footer">
-                        <button className="newProduct-wiper__slide-footer__btn">
-                          {item.readMoreLink || ""}
-                        </button>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                </>
-              );
-            })}
+          {!searchList && data && data?.newsList?.map((news, index) => 
+            <SwiperSlide className="com-news__slide" key={`slide-${index}`}>
+              <NewsCard {...news}></NewsCard>
+            </SwiperSlide>
+          )}
+
+          <div className="com-news__slide-group-button">
+            <SwiperButtonPre></SwiperButtonPre>
+            <div className="com-news__slide-number">
+              <b>{currentSlide}</b> / {totalSlide}
+            </div>
+            <SwiperButtonNext></SwiperButtonNext>
+          </div>
         </Swiper>
       </div>
-    </>
+    </div>
   );
 };
 export default News;
+
+const NewsCard: React.FC<NewsCardDataType> = (props) => {
+  return (
+    <a className="news-card-container" href={props.readMoreLink}>
+      <div className="news-card">
+        <img src={`http://localhost:1337${props?.background?.url}`} alt="" className="news-card__background"/>
+        <div className="news-card__social">{props.type}</div>
+        <div className="news-card__description">
+          {props.description}
+        </div>
+        <div className="news-card__overlay"></div>
+      </div>
+    </a>
+  )
+}
+
+const SwiperButtonPre: React.FC = () => {
+  const swiper = useSwiper();
+  return <div onClick={() => swiper.slidePrev()} className="com-news__slide-button"><LeftOutlined /></div>;
+};
+
+const SwiperButtonNext: React.FC = () => {
+  const swiper = useSwiper();
+  return <div onClick={() => swiper.slideNext()} className="com-news__slide-button"><RightOutlined /></div>;
+};

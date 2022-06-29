@@ -135,7 +135,7 @@ export const Introduce: React.FC<IntroduceDataType> = (props) => {
               return (
                 <SwiperSlide key={i} className={styles["items"]}>
                   <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.image.url} />
+                    <Image className={styles["img-game"]} src={`http://localhost:1337${item.image.url}`} />
                   </div>
                   <div className={styles["button"]}>
                   <Button

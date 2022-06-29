@@ -1,6 +1,11 @@
 @import "src/assets/styles/mixin" ;
 @import "src/assets/styles/variable" ;
 
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 .g-container {
   max-width: 1280px;
   margin: 0 auto;
