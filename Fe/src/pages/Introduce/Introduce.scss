@@ -1,0 +1,268 @@
+@import 'src/assets/styles/global.scss';
+@import "src/assets/styles/mixin";
+@import "src/assets/styles/variable";
+
+
+.com-introduce {
+  position: relative;
+  padding: 3rem 0;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__content {
+    padding: 0 1rem;
+
+    @include at($desktop) {
+      padding: 0 6rem;
+    }
+  }
+
+  &__title {
+    font-size: 2.353rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  &__description {
+    font-size: 1.33rem;
+    font-weight: 400;
+    margin-top: 0.3rem;
+  }
+
+  &__slider {
+    margin-top: 3rem;
+  }
+
+  &__slide {
+    width: 320px;
+
+    @include at($desktop) {
+      width: 585px;
+    }
+
+    &-group-button {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 15%);
+      box-sizing: border-box;
+      width: 40px;
+      height: 40px;
+      transition: background-color .15s;
+      cursor: pointer;
+
+      &:active {
+        background-color: #0095f3;
+
+        svg {
+          color: #fff;
+        }
+      }
+    }
+
+    &-number {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__slide-item {
+    aspect-ratio: 585/334;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 1.6rem;
+    transition: 0.2s;
+    position: relative;
+    transform: scale(0.9);
+    transition: 0.2s;
+
+    &--active {
+      transform: scale(1);
+      transition: 0.2s;
+    }
+  }
+
+  .introduce-card {
+
+    &__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: 30px;
+    }
+
+    &__button {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      display: flex;
+      gap: 0.3rem;
+
+      &-item {
+        background-color: #fff;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+
+        @include at($desktop) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      span {
+        color: #000;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+
+  &__popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+
+    &--show {
+      display: block;
+    }
+
+    &-close {
+      position: absolute;
+      top: 2vh;
+      right: 1vw;
+      color: #fff;
+
+      svg {
+        width: 40px;
+        height: 40px;
+        color: #fff;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 80%;
+      object-fit: contain;
+      width: 100%;
+      max-width: 90vw;
+    }
+  }
+}
+
+// #introduce-movies {
+//     font-family: Montserrat, sans-serif;
+//     line-height: 1.5em;
+//     background: white;
+//     position: relative;
+//     width: 100%;
+//     // height: 100%;
+//     @include at($desktop) {
+//         margin-top: 0;
+//         padding: 0 22px 0 25px;
+//     }
+
+//     .heading {
+//         text-align: left;
+//         margin-bottom: 15px;
+
+//         color: black;
+
+//         .h2{
+//             font-weight: bold;
+//         }
+//     }
+
+//     .mySwiper {
+
+//         display: grid;
+//         gap: 6px;
+//         position: relative;
+//         width: 100%;
+//         height: 100%;
+//         overflow-y: hidden;
+//         overflow-x: auto;
+//         overflow: hidden;
+//         scroll-behavior: smooth;
+
+//         .items {
+//             transform: scale(1);
+//             max-width: 650px;
+//             width: 40%;
+//             height: 100%;
+//             transition: all 0.3s linear;
+//             user-select: none;
+//             overflow: hidden;
+//             transform: center left;
+//             position: relative;
+//             padding-bottom: 1.5rem;
+//             .button{
+//                 position: absolute;
+//                 top: 25px;
+//                 right: 50px;
+//             }
+//             .box {
+//                 width: 100%;
+//                 transform: scale(1);
+//                 // max-width: 500px;
+//                 max-height: 400px;
+//                 // height: 100%;
+//                 transition: all 0.5s linear;
+//                 user-select: none;
+//                 overflow: hidden;
+//                 transform: center left;
+//                 position: relative;
+//                 @include at($desktop) {
+//                     max-width: 650px;
+//                     width: 100%;
+//                 }
+
+//                 .img-game {
+//                     display: block;
+//                     width: 100%;
+//                     -webkit-transform-style: preserve-3d;
+//                     height: 350px;
+//                     cursor: pointer;
+//                     scroll-behavior: smooth;
+//                     transition: all .3s ease-in-out;
+
+//                 }
+
+
+//             }
+//         }
+//     }
+// }

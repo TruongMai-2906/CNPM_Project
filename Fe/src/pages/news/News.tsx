@@ -53,60 +53,7 @@ const News: React.FC<NewsDataType> = (props) => {
   const [initCardList, setInitCardList] = useState<NewsCardDataType[]>([]);
   const [searchList, setSearchList] = useState<NewsDataType>();
 
-  const [data, setData] = useState<NewsDataType>({
-    title: "Our Latest News",
-    description: "Check out what’s new at Gameloft! Deep dive into the latest news on your favorite games, as well as stories from Gamelofters all over the world.",
-    newsList: [
-      {
-        type: "facebook",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },
-      {
-        type: "linkedln",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },
-      {
-        type: "twitter",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },      
-      {
-        type: "facebook",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online truong`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },
-      {
-        type: "facebook",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },
-      {
-        type: "linkedln",
-        description: `Gameloft What's New Review #15
-        We have plenty of events for you this week, and the chance to become an official content creator!
-        Asphalt 9: Legends Dragon Mania Legends LEGO Legacy: Heroes Unboxed War Planet Online`,
-        background: { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
-        readMoreLink: "",
-      },
-    ],
-  });
+  const [data, setData] = useState<NewsDataType>();
 
   useEffect(() => {
     if (localStorage.getItem("data")) {
@@ -115,22 +62,17 @@ const News: React.FC<NewsDataType> = (props) => {
       setData(finalData as NewsDataType);
       setInitCardList((finalData as NewsDataType).newsList!);
     }
-
-    //remove when call api
-    setInitCardList(data?.newsList!);
   }, []);
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
     const filterData = key === "all" ? initCardList : initCardList.filter((item) => item.type === key);
-    console.log(filterData);
     setData({...data, newsList: filterData});
     setTotalSlide(filterData.length);
     setSearchList(undefined);
   };
 
   const handleSearch = (e: HTMLInputElement) => {
-    console.log(e.value);
-    const filterData = data.newsList?.filter((item) => item.description.includes(e.value));
+    const filterData = data?.newsList?.filter((item) => item.description.includes(e.value));
     setSearchList({...data, newsList: filterData});
     setTotalSlide(filterData?.length || 0);
   }
@@ -158,8 +100,7 @@ const News: React.FC<NewsDataType> = (props) => {
       ]}
     />
   );
-
-
+  
   return (
     <div className="com-news">
       <div className="com-news-top">

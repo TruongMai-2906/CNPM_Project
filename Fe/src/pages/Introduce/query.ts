@@ -15,6 +15,8 @@ const query = (slug: string) => {
           }
           ... on ComponentHomepageIntroduce {
             title
+            description
+            background { url }
             imageList {
               image { url }
             }
@@ -37,6 +39,10 @@ const query = (slug: string) => {
               storeImage { url }
               link
             }
+          }
+          ... on ComponentHomepageRegister {
+            background { url }
+            character { url }
           }
         }
       }

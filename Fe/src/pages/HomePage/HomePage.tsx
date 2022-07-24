@@ -18,6 +18,9 @@ import Introduce from "pages/Introduce/Introduce";
 import News from "pages/news/News";
 import Store from "pages/Store/Store";
 import Banner from "../../components/Banner/Banner";
+import Header from "components/Header/Header";
+import Register from "../../pages/Register/Register";
+import Footer from "components/Footer/Footer";
 
 export interface HomePageProps {}
 
@@ -57,9 +60,13 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   return (
     <div className={styles["root"]}>
       {/* <Store /> */}
+      {/* <Header></Header> */}
+      {/* <Header /> */}
       {data?.sections?.map((section) => {
         return renderSection(section.__typename);
       })}
+      {/* <Register /> */}
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -68,10 +75,10 @@ export default HomePage;
 
 const SectionMap = {
   // default product page sections
-  ComponentHomepageBanner: { component: <Banner></Banner> },
-  ComponentHomepageIntroduce: { component: <Introduce></Introduce> },
+  ComponentHomepageBanner: { component: <Banner /> },
+  ComponentHomepageIntroduce: { component: <Introduce /> },
   ComponentHomepageNews: { component: <News /> },
-  ComponentHomepageStore: { component: <Store></Store> },
-  ComponentHomepageSignUp: { component: <>sign up</> },
+  ComponentHomepageStore: { component: <Store /> },
+  ComponentHomepageRegister: { component: <Register /> },
 };
 

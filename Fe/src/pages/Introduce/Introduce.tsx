@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
-import styles from "./Introduce.module.scss";
+import "./Introduce.scss";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
@@ -18,14 +18,16 @@ import { post } from "../../utilities/api";
 
 import query from "./query";
 import { RawData } from "pages/HomePage/HomePage";
+import { CloseOutlined, DownloadOutlined, LeftOutlined, RightOutlined, ZoomInOutlined } from "@ant-design/icons";
+import { SImage } from "types/types";
+import classNames from "classnames";
 
 export interface IntroduceDataType{
   title?: string;
   description?: string;
+  background?: SImage;
   imageList?: {
-    image: {
-      url: string;
-    };
+    image: SImage
   }[];
 }
 
@@ -39,123 +41,95 @@ export const Introduce: React.FC<IntroduceDataType> = (props) => {
   //   title: "Introduce Game",
   //   description:" Browse the unique art collection and find the perfect wallpaper for your device.",
   //   imageList: [
-  //     {
-  //       image: Imager,
-  //     },
-  //     {
-  //       image: Imager,
-  //     },
-  //     {
-  //       image: Imager,
-  //     },
-  //     {
-  //       image: Imager,
-  //     },
-  //     {
-  //       image: Imager,
-  //     },
-  //     {
-  //       image: Imager,
-  //     },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
+  //     { url: "https://www.w3schools.com/w3css/img_lights.jpg" },
   //   ]
 
   // }
   const mobile = useCheckMobileScreen(768);
+  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  const [totalSlide, setTotalSlide] = useState<number>(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [data, setData] = useState<IntroduceDataType>();
+
+  console.log(totalSlide);
+  
 
   useEffect(() => {
     const rawData: RawData = JSON.parse(localStorage.getItem("data") || "");
     const finalData  = rawData.sections?.find((section) => section.__typename === "ComponentHomepageIntroduce");
     setData((finalData as IntroduceDataType));
+    setTotalSlide((finalData as IntroduceDataType).imageList?.length!);
   }, []);
 
-  const download = (e: any) => {
-    console.log(e.target.href);
-    fetch(e.target.href, {
-      method: "GET",
-      headers: {},
-    })
-      .then((response) => {
-        response.arrayBuffer().then(function (buffer) {
-          const url = window.URL.createObjectURL(new Blob([buffer]));
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute("download", "image.png"); //or any other extension
-          document.body.appendChild(link);
-          link.click();
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
-    <>
-      <div id={styles["introduce-movies"]}>
-        <h1 className={styles["heading"]}> {props?.title || data?.title || ""} </h1>
-        <h2 className={styles["heading"]}>
-          {props?.description || data?.description || ""}
-        </h2>
-        <>
-          <Swiper
-            slidesPerView={mobile ? 1: 3}
-            spaceBetween={35}
-            slidesPerGroup={mobile ? 1: 3}
-            loop={true}
-            // loopFillGroupWithBlank={true}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className={styles["mySwiper"]}
-          >
-            {props && props?.imageList?.map((item, i) => {
-              return (
-                <SwiperSlide key={i} className={styles["items"]}>
-                  <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={item.image.url} />
-                  </div>
-                  <div className={styles["button"]}>
-                  <Button
-                      type="primary"
-                      shape="circle"
-                      href={item.image.url}
-                      download
-                      onClick={(e) => download(e)}
-                    >
-                      
-                     <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
-                    </Button>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-
-            {data && data?.imageList?.map((item, i) => {
-              return (
-                <SwiperSlide key={i} className={styles["items"]}>
-                  <div className={styles["box"]}>
-                    <Image className={styles["img-game"]} src={`http://localhost:1337${item.image.url}`} />
-                  </div>
-                  <div className={styles["button"]}>
-                  <Button
-                      type="primary"
-                      shape="circle"
-                      href={item.image.url}
-                      download
-                      onClick={(e) => download(e)}
-                    >
-                      
-                     <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
-                    </Button>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </>
+    <div className="com-introduce">
+      <img className="com-introduce__background" src={`http://localhost:1337${data?.background?.url}`|| ""} alt="background" />
+      <div className="com-introduce__content">
+        <div className="com-introduce__title">{data?.title}</div>
+        <div className="com-introduce__description">{data?.description}</div>
       </div>
-    </>
+      <div>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={"auto"}
+          centeredSlides={true}
+          scrollbar={{ draggable: true }}
+          // onInit={(swiper) => setTotalSlide(swiper.slides.length)}
+          // onSwiper={(swiper) => setTotalSlide(swiper.slides.length)}
+          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
+          className="com-introduce__slider"
+        >
+          {data?.imageList?.map((image, index) => 
+            <SwiperSlide className="com-introduce__slide" key={`slide-${index}`}>
+              <div className={classNames("com-introduce__slide-item", {"com-introduce__slide-item--active": index === currentSlide - 1})}>
+                <img src={ `http://localhost:1337${image.image.url}` } alt="" className="introduce-card__background"/>
+                <div className="introduce-card__button">
+                  <a className="introduce-card__button-item" href={`http://localhost:1337${image.image.url}`} download>
+                    <DownloadOutlined />
+                  </a>
+                  <div className="introduce-card__button-item" onClick={() => setIsOpen(!isOpen)}>
+                    <ZoomInOutlined />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          )}
+
+          <div className="com-news__slide-group-button">
+            <SwiperButtonPre></SwiperButtonPre>
+            <div className="com-news__slide-number">
+              <b>{currentSlide}</b> / {totalSlide}
+            </div>
+            <SwiperButtonNext></SwiperButtonNext>
+          </div>
+        </Swiper>
+      </div>
+      <div className={classNames("com-introduce__popup", isOpen ? "com-introduce__popup--show": "")}>
+        <CloseOutlined className="com-introduce__popup-close" onClick={() => setIsOpen(!isOpen)} />
+        {
+          data?.imageList && <img src={ `http://localhost:1337${data?.imageList[currentSlide-1]?.image.url}`  || "" } alt="image"/>
+        }
+      </div>
+    </div>
   );
 };
 export default Introduce;
+
+const SwiperButtonPre: React.FC = () => {
+  const swiper = useSwiper();
+  return <div onClick={() => swiper.slidePrev()} className="com-news__slide-button"><LeftOutlined /></div>;
+};
+
+const SwiperButtonNext: React.FC = () => {
+  const swiper = useSwiper();
+  return <div onClick={() => swiper.slideNext()} className="com-news__slide-button"><RightOutlined /></div>;
+};

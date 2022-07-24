@@ -1,133 +1,175 @@
 @import "src/assets/styles/global.scss";
 @import "src/assets/styles/mixin";
 @import "src/assets/styles/variable";
-.register{
-    display: flex;
-    height: 100vh;
-    padding: 3px 50px;
-    // overflow: hidden;
-    background-image: url('https://games.assets.gameloft.com/assets/MOE_register_bg_1b0bca8992.jpg');
-    object-fit: contain;
-  
-    color: white;
-    @media screen and (max-width: 768px) {
-      border-radius: 5px;
-}
-    .left_register{
-            width: 50%;
-            background-image: url('https://games.assets.gameloft.com/assets/MOE_register_image_065a84d14f.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;     
-            @media screen and (max-width: 768px) {
-     
-                    display: none;
-            }      
-    }
-    .right_register{
-        width: 50%;
-        padding: 30px 30vh 30px 30px;
-        height: 100%;
-        border-radius: 5px;
-        @media screen and (max-width: 768px) {
-     
-            padding: 1rem 1rem 1rem 1rem;
-            width: 100%;
-           
-    
-    
-    }
-        .form_title{
-            font-size: 1.8rem;
-            .form_description{
-                padding: 0 4rem 0 0;
-               
-            }
-       
-        }
-        input[type=text]{
-            margin: 1rem 0;
-         
-            width: 80%;
-            font-size: 1rem;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            outline: none;
-            color: black;
-           
-        }
-        .container_national-date{
-            display: flex;
-            width: 80%;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            margin: 1rem 0;
-            color: black;
-            input[type=date]{
-                padding: 0 10px;
-                margin-right: 10px;
-                outline: none;
-                border: none;
-               
-            }
-            select{
-                color: black;
-                margin: 0px;
-                option{
-                    height: 100%;
-                }
-            }
-   
-            .national{
-                flex: 1;
-                outline: none;
-                border-radius: 10px;
-                padding: 0.7rem;
-              
-            }
-            .input-date{
-               flex: 2;
-               color: black;
-            }
-           
 
-        }
-        .accept_me{
-            display: flex;
-            input[type=checkbox]{
-                margin-top: 5px;
-                margin-right: 5px;
-            }
-           
-         
-          
-        }
-        button{
-            padding: 10px 24px;
-            background-color: #33aaf5;
-            border: none;
-            border-radius: 6px;
-           
-         
-        }
-      
-        
-    }
-    .accept_me {
-      input {
-        width: auto;
-        margin: 0 12px;
-      }
-      display: flex;
-      margin: 1rem 0;
-      width: 80%;
-    }
-    button {
-      padding: 12px;
-      background-color: aqua;
-      border: none;
-      border-radius: 6px;
+.register {
+  display: flex;
+  position: relative;
+  padding: 3rem 50px;
+  min-height: 80vh;
+  // // overflow: hidden;
+  // background-image: url('https://games.assets.gameloft.com/assets/MOE_register_bg_1b0bca8992.jpg');
+  object-fit: contain;
+
+  color: white;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 5px;
+  }
+
+  .left_register {
+    width: 50%;
+    // background-image: url('https://games.assets.gameloft.com/assets/MOE_register_image_065a84d14f.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+
+      display: none;
     }
   }
 
+  .right_register {
+    width: 50%;
+    padding: 30px 30vh 30px 30px;
+    // height: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+      padding: 1rem 1rem 1rem 1rem;
+      width: 100%;
+    }
+
+    .form_title {
+      font-size: 2.353rem;
+      font-weight: 700;
+      line-height: 1.25;
+
+      .form_description {
+        font-size: 1.33rem;
+        font-weight: 400;
+        margin-top: 0.3rem;
+        padding: 0 4rem 0 0;
+
+      }
+
+    }
+
+    input[type=text] {
+      margin: 1rem 0;
+
+      width: 80%;
+      font-size: 1rem;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      outline: none;
+      color: black;
+
+    }
+
+    .container_national-date {
+      display: flex;
+      width: 80%;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      margin: 1rem 0;
+      color: black;
+
+      input[type=date] {
+        padding: 0 10px;
+        margin-right: 10px;
+        outline: none;
+        border: none;
+
+      }
+
+      select {
+        color: black;
+        margin: 0px;
+
+        option {
+          height: 100%;
+        }
+      }
+
+      .national {
+        flex: 1;
+        outline: none;
+        border-radius: 10px;
+        padding: 0.7rem;
+
+      }
+
+      .input-date {
+        flex: 2;
+        color: black;
+      }
+
+
+    }
+
+    .accept_me {
+      display: flex;
+
+      input[type=checkbox] {
+        margin-top: 5px;
+        margin-right: 5px;
+      }
+
+
+
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background-color: #33aaf5;
+      border: none;
+      border-radius: 6px;
+      width: fit-content;
+
+    }
+
+
+  }
+
+  .accept_me {
+    input {
+      width: auto;
+      margin: 0 12px;
+    }
+
+    display: flex;
+    margin: 1rem 0;
+    width: 80%;
+  }
+
+  button {
+    padding: 12px;
+    background-color: aqua;
+    border: none;
+    border-radius: 6px;
+  }
+}
+
+.com-register__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.com-register__character {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  object-fit: contain;
+}
