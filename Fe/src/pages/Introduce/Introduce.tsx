@@ -104,9 +104,9 @@ export const Introduce: React.FC<IntroduceDataType> = (props) => {
             </SwiperSlide>
           )}
 
-          <div className="com-news__slide-group-button">
+          <div className="com-introduce__slide-group-button">
             <SwiperButtonPre></SwiperButtonPre>
-            <div className="com-news__slide-number">
+            <div className="com-introduce__slide-number">
               <b>{currentSlide}</b> / {totalSlide}
             </div>
             <SwiperButtonNext></SwiperButtonNext>
@@ -126,10 +126,10 @@ export default Introduce;
 
 const SwiperButtonPre: React.FC = () => {
   const swiper = useSwiper();
-  return <div onClick={() => swiper.slidePrev()} className="com-news__slide-button"><LeftOutlined /></div>;
+  return <div onClick={() => swiper.slidePrev()} className="com-introduce__slide-button"><LeftOutlined /></div>;
 };
 
 const SwiperButtonNext: React.FC = () => {
   const swiper = useSwiper();
-  return <div onClick={() => swiper.slideNext()} className="com-news__slide-button"><RightOutlined /></div>;
+  return <div onClick={() => swiper.slideNext()} className="com-introduce__slide-button"><RightOutlined /></div>;
 };

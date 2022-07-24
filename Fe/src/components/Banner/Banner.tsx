@@ -47,7 +47,7 @@ const Banner: React.FC<BannerDataType & BannerProps> = (props) => {
       <div className="com-banner__content">
         <img className="banner__logo" src={`http://localhost:1337${data?.logo?.url}`} alt="logo" />
         <div className="banner__description">{data?.description}</div>
-        <button className="banner__button" onClick={() => setIsOpen(!isOpen)}>{data?.buttonText}</button>
+        { data.link && <button className="banner__button" onClick={() => setIsOpen(!isOpen)}>{data?.buttonText}</button> }
       </div>
       <div className="com-banner__overlay"></div>
       <div className={classNames("com-banner__popup", isOpen ? "com-banner__popup--show": "")}>

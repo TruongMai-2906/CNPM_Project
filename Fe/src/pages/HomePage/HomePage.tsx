@@ -37,12 +37,14 @@ export interface RawData {
 const HomePage: React.FC<HomePageProps> = (props) => {
   const [data, setData] = useState<RawData>();
   const { slug } = useParams();
+  const [customStyles, setCustomStyle] = useState<string>();
 
   useEffect(() => {
     const initData = async () => {
       const data = await post("http://localhost:1337/graphql", {
         query: query(slug || ""),
       });
+      data.data.data.homepages[0].css ? setCustomStyle(data.data.data.homepages[0].css.css): null;
       setData(data.data.data.homepages[0]);
       localStorage.setItem("data", JSON.stringify(data.data.data.homepages[0]));
     };
@@ -62,6 +64,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
       {/* <Store /> */}
       {/* <Header></Header> */}
       {/* <Header /> */}
+      {
+        customStyles && <style>{customStyles}</style>
+      }
       {data?.sections?.map((section) => {
         return renderSection(section.__typename);
       })}

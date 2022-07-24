@@ -2,6 +2,7 @@ const query = `
   query {
     homepages {
       name
+      slug
     }
   }
 `

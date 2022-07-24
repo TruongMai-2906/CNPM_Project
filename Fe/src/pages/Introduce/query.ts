@@ -3,6 +3,7 @@ const query = (slug: string) => {
     query {
       homepages(where: { slug: "${slug}" }) {
         slug
+        css
         sections {
           __typename
           ... on ComponentHomepageBanner {
