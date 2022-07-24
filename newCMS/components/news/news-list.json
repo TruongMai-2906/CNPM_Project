@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_news_news_lists",
+  "info": {
+    "name": "newsList",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "facebook",
+        "twitter",
+        "linkedln"
+      ]
+    },
+    "background": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "text"
+    },
+    "readMoreLink": {
+      "type": "text"
+    }
+  }
+}

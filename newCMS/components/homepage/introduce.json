@@ -17,6 +17,17 @@
       "type": "component",
       "repeatable": true,
       "component": "introduce.image-list"
+    },
+    "background": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }

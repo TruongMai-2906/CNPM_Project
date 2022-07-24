@@ -20,8 +20,24 @@
       "components": [
         "homepage.banner",
         "homepage.introduce",
-        "homepage.news"
+        "homepage.news",
+        "homepage.store",
+        "homepage.register"
       ]
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

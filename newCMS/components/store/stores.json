@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_store_stores",
+  "info": {
+    "name": "stores",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "storeImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
